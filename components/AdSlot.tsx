@@ -10,7 +10,7 @@ declare global {
 
 interface AdSlotProps {
   slot: string;
-  format?: "responsive" | "horizontal" | "rectangle";
+  format?: "auto" | "horizontal" | "rectangle";
   className?: string;
 }
 
@@ -21,7 +21,7 @@ interface AdSlotProps {
  * AdSense unit and requests an ad for it. Until then it shows a labeled
  * placeholder so the layout never breaks.
  */
-export default function AdSlot({ slot, format = "responsive", className = "" }: AdSlotProps) {
+export default function AdSlot({ slot, format = "auto", className = "" }: AdSlotProps) {
   const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
   const configured = Boolean(client && slot);
   const insRef = useRef<HTMLModElement>(null);
