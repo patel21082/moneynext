@@ -90,6 +90,40 @@ export const metadata: Metadata = {
     : {}),
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      name: SITE_NAME,
+      url: siteUrl,
+      description: SITE_DESCRIPTION,
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Any (web browser)",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "INR",
+      },
+      browserRequirements: "Requires JavaScript.",
+      audience: {
+        "@type": "Audience",
+        geographicArea: {
+          "@type": "Country",
+          name: "India",
+        },
+      },
+    },
+    {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: siteUrl,
+      inLanguage: "en-IN",
+      description: SITE_DESCRIPTION,
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -98,6 +132,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="font-body antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         {children}
 
         {/* AdSense loads only once NEXT_PUBLIC_ADSENSE_CLIENT is set — see .env.example */}

@@ -37,7 +37,7 @@ export default function ResultsDashboard({
       <p className="mb-3 mt-10 text-xs font-medium uppercase tracking-[0.14em] text-ink-600/60">
         Financial Snapshot
       </p>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         <SnapshotCard label="Income" value={formatINR(metrics.totalIncome)} />
         <SnapshotCard label="Expenses" value={formatINR(metrics.totalMonthlyExpenses)} />
         <SnapshotCard label="EMIs" value={formatINR(metrics.totalEMI)} />
@@ -122,9 +122,11 @@ function SnapshotCard({
 }) {
   const toneClass = tone === "gain" ? "text-gain" : tone === "danger" ? "text-danger" : "text-ink-900";
   return (
-    <div className="rounded-xl border border-ink-900/8 bg-white p-4">
-      <p className="text-xs text-ink-600">{label}</p>
-      <p className={`mt-1.5 font-mono text-base font-semibold tabular sm:text-lg ${toneClass}`}>{value}</p>
+    <div className="min-w-0 rounded-xl border border-ink-900/8 bg-white p-4">
+      <p className="truncate text-xs text-ink-600">{label}</p>
+      <p className={`mt-1.5 truncate font-mono text-base font-semibold tabular sm:text-lg ${toneClass}`}>
+        {value}
+      </p>
     </div>
   );
 }

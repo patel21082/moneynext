@@ -692,9 +692,9 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 function SummaryTile({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl bg-paper-100 px-4 py-3.5">
-      <p className="text-xs text-ink-600">{label}</p>
-      <p className="mt-1 font-mono text-base font-semibold tabular text-ink-900">{value}</p>
+    <div className="min-w-0 rounded-xl bg-paper-100 px-4 py-3.5">
+      <p className="truncate text-xs text-ink-600">{label}</p>
+      <p className="mt-1 truncate font-mono text-base font-semibold tabular text-ink-900">{value}</p>
     </div>
   );
 }

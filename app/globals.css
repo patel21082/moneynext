@@ -26,6 +26,12 @@ html {
   }
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: #FBFBF9;
   color: #0B1220;
