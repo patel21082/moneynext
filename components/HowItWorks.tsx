@@ -22,6 +22,7 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="border-y border-ink-900/6 bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <h2 className="sr-only">How MoneyNext works</h2>
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
           {STEPS.map((step, i) => (
             <div key={step.title}>
