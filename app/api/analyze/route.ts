@@ -200,7 +200,7 @@ export async function POST(req: NextRequest) {
   }
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 25_000);
+  const timeout = setTimeout(() => controller.abort(), 60_000);
 
   try {
     const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
