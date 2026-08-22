@@ -10,6 +10,7 @@ import ResultsDashboard from "@/components/ResultsDashboard";
 import WhatIf from "@/components/WhatIf";
 import AdSlot from "@/components/AdSlot";
 import PrivacySection from "@/components/PrivacySection";
+import LearnSection from "@/components/LearnSection";
 import Disclaimer from "@/components/Disclaimer";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -110,7 +111,16 @@ export default function Home() {
           {view === "loading" && <AnalyzingScreen />}
         </div>
 
-        {view !== "results" && (
+        {/*
+          Ad only renders on the actual wizard form (real content: income,
+          expenses, loans, etc). It must NOT render during view === "loading"
+          — that screen has no content of its own (just a spinner + status
+          list) and Google AdSense explicitly disallows ads on screens
+          "without content" or "used for alerts, navigation or other
+          behavioural purposes." Showing an ad next to a bare loading
+          screen is exactly that violation.
+        */}
+        {view === "form" && (
           <div className="mx-auto max-w-3xl px-5 pb-4 sm:px-8">
             <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_ANALYSIS ?? ""} />
           </div>
@@ -149,6 +159,7 @@ export default function Home() {
           <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_BOTTOM ?? ""} />
         </div>
 
+        <LearnSection />
         <PrivacySection />
         <Disclaimer />
         <FAQ />

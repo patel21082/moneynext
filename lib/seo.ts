@@ -1,5 +1,9 @@
 export const SITE_NAME = "MoneyNext";
 
+export const SITE_OWNER_NAME = "Akshar Dev";
+
+export const SITE_CONTACT_EMAIL = "aksharp1504@gmail.com";
+
 export const SITE_TAGLINE = "Know what your money should do next.";
 
 export const SITE_DESCRIPTION =

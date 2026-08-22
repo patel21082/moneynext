@@ -8,9 +8,20 @@ export default function Footer() {
         <p className="text-xs text-ink-600">
           Educational financial planning tool. Not regulated financial advice.
         </p>
-        <Link href="/privacy" className="text-xs font-medium text-ink-600 hover:text-ink-900">
-          Privacy Policy
-        </Link>
+        <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <Link href="/about" className="text-xs font-medium text-ink-600 hover:text-ink-900">
+            About
+          </Link>
+          <Link href="/contact" className="text-xs font-medium text-ink-600 hover:text-ink-900">
+            Contact
+          </Link>
+          <Link href="/terms" className="text-xs font-medium text-ink-600 hover:text-ink-900">
+            Terms of Use
+          </Link>
+          <Link href="/privacy" className="text-xs font-medium text-ink-600 hover:text-ink-900">
+            Privacy Policy
+          </Link>
+        </nav>
       </div>
     </footer>
   );
