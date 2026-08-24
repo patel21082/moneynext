@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import LogoMark from "@/components/LogoMark";
 
 interface NavProps {
   onStart: () => void;
@@ -19,8 +20,11 @@ export default function Nav({ onStart }: NavProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-ink-900/5 bg-paper-50/85 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#top" className="font-display text-lg font-semibold tracking-tight text-ink-900">
-          MoneyNext
+        <a href="#top" className="flex items-center gap-2.5">
+          <LogoMark size={30} />
+          <span className="font-display text-lg font-semibold tracking-tight text-ink-900">
+            MoneyNext
+          </span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">

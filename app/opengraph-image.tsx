@@ -29,6 +29,11 @@ export default function OpengraphImage() {
             color: "#7C8CE8",
           }}
         >
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 5 }}>
+            <div style={{ width: 8, height: 13, background: "#7C8CE8", borderRadius: 3 }} />
+            <div style={{ width: 8, height: 20, background: "#7C8CE8", borderRadius: 3 }} />
+            <div style={{ width: 8, height: 27, background: "#FBFBF9", borderRadius: 3 }} />
+          </div>
           MoneyNext
         </div>
         <div style={{ display: "flex", fontSize: 58, fontWeight: 700, marginTop: 28, lineHeight: 1.15 }}>
