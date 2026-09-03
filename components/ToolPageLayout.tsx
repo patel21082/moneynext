@@ -94,7 +94,7 @@ export default function ToolPageLayout({
         <div className="mt-8">{calculator}</div>
 
         <div className="mt-8">
-          <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_TOOLS ?? ""} />
+          <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_BOTTOM ?? ""} />
         </div>
 
         <article className="mt-12 space-y-8 text-ink-800">
@@ -121,6 +121,10 @@ export default function ToolPageLayout({
             </div>
           </section>
         </article>
+
+        <div className="mt-10">
+          <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_BOTTOM ?? ""} />
+        </div>
 
         <div className="mt-10 rounded-xl2 border border-ink-900/8 bg-paper-100/60 p-6">
           <p className="font-display text-sm font-semibold text-ink-900">{ctaHeading}</p>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME, SITE_OWNER_NAME } from "@/lib/seo";
+import AdSlot from "@/components/AdSlot";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -10,7 +12,8 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="mx-auto max-w-2xl px-5 py-16 sm:px-8 sm:py-24">
+    <>
+      <main className="mx-auto max-w-2xl px-5 py-16 sm:px-8 sm:py-24">
       <Link href="/" className="text-sm font-medium text-signal hover:text-signal-dim">
         ← Back to {SITE_NAME}
       </Link>
@@ -98,6 +101,12 @@ export default function TermsPage() {
           </p>
         </section>
       </div>
+
+      <div className="mt-10">
+        <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_BOTTOM ?? ""} />
+      </div>
     </main>
+    <Footer />
+    </>
   );
 }

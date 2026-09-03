@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SITE_NAME } from "@/lib/seo";
 import { GUIDES } from "@/lib/siteNav";
+import AdSlot from "@/components/AdSlot";
 import Footer from "@/components/Footer";
 
 const TITLE = "Learn Personal Finance";
@@ -55,6 +56,10 @@ export default function LearnPage() {
               </span>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_BOTTOM ?? ""} />
         </div>
       </main>
       <Footer />

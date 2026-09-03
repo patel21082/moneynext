@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME, getSiteUrl, CONTENT_LAST_UPDATED } from "@/lib/seo";
 import FaqAccordion from "@/components/FaqAccordion";
+import AdSlot from "@/components/AdSlot";
 import Footer from "@/components/Footer";
 
 const TITLE = "Frequently Asked Questions";
@@ -180,6 +181,10 @@ export default function FaqPage() {
             </div>
           </section>
         ))}
+
+        <div className="mt-10">
+          <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_BOTTOM ?? ""} />
+        </div>
       </main>
       <Footer />
     </>

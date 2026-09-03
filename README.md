@@ -50,9 +50,15 @@ lib/
 ## Ads
 
 `components/AdSlot.tsx` renders a labeled placeholder until
-`NEXT_PUBLIC_ADSENSE_CLIENT` and the relevant `NEXT_PUBLIC_AD_SLOT_*` env vars
-are set — at that point it's the only file that needs to change to go live
-with real AdSense units.
+`NEXT_PUBLIC_ADSENSE_CLIENT` and `NEXT_PUBLIC_AD_SLOT_BOTTOM` are set — at that
+point it's the only file that needs to change to go live with real AdSense units.
+
+Every page on the site (home, tool pages, guide pages, info pages, FAQ, tools
+index, learn index) renders at least one `AdSlot` using the single shared
+`NEXT_PUBLIC_AD_SLOT_BOTTOM` slot. The home page additionally uses
+`NEXT_PUBLIC_AD_SLOT_ANALYSIS` (next to the wizard form) and
+`NEXT_PUBLIC_AD_SLOT_RESULTS` (inside the results view) — these are optional;
+only `NEXT_PUBLIC_AD_SLOT_BOTTOM` is required for ads to appear on every page.
 
 ## Notes
 

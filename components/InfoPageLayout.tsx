@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/seo";
+import AdSlot from "@/components/AdSlot";
 import Footer from "@/components/Footer";
 
 export interface InfoPageLayoutProps {
@@ -40,6 +41,10 @@ export default function InfoPageLayout({
         )}
 
         <div className="mt-8 space-y-6 text-ink-800">{children}</div>
+
+        <div className="mt-10">
+          <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_BOTTOM ?? ""} />
+        </div>
       </main>
       <Footer />
     </>
