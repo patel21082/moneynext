@@ -99,7 +99,7 @@ export default function GuidePageLayout({
         <p className="mt-3 max-w-2xl text-ink-700">{intro}</p>
 
         <div className="mt-6">
-          <AdSlot slot="0000000001" />
+          <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_GUIDES ?? ""} />
         </div>
 
         <article className="mt-8 space-y-8 text-ink-800">{children}</article>

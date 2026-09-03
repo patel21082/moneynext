@@ -2,8 +2,9 @@
 
 import { useState, type FormEvent } from "react";
 import { Mail } from "lucide-react";
+import { SITE_CONTACT_EMAIL } from "@/lib/seo";
 
-const CONTACT_EMAIL = "hello@moneynext.app";
+const CONTACT_EMAIL = SITE_CONTACT_EMAIL;
 
 export default function ContactForm() {
   const [name, setName] = useState("");
