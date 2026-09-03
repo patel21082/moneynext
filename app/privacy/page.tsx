@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { SITE_NAME, CONTENT_LAST_UPDATED } from "@/lib/seo";
-import InfoPageLayout from "@/components/InfoPageLayout";
+import Link from "next/link";
+import { SITE_NAME, SITE_CONTACT_EMAIL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -76,16 +76,30 @@ export default function PrivacyPage() {
         </p>
       </section>
 
-      <section>
-        <h2 className="font-display text-lg font-semibold text-ink-900">Contact</h2>
-        <p className="mt-2 leading-relaxed">
-          Questions about this policy can be directed to us via our{" "}
-          <a href="/contact" className="text-signal underline">
-            Contact page
-          </a>
-          .
-        </p>
-      </section>
-    </InfoPageLayout>
+        <section>
+          <h2 className="font-display text-lg font-semibold text-ink-900">Analytics</h2>
+          <p className="mt-2 leading-relaxed">
+            If analytics are enabled on this site, they collect aggregate, non-identifying usage
+            data (such as page views and general location) to help us understand how the site is
+            used. Analytics data is not linked to the financial information you enter.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-display text-lg font-semibold text-ink-900">Contact</h2>
+          <p className="mt-2 leading-relaxed">
+            Questions about this policy can be sent to{" "}
+            <a href={`mailto:${SITE_CONTACT_EMAIL}`} className="text-signal underline">
+              {SITE_CONTACT_EMAIL}
+            </a>{" "}
+            or via the{" "}
+            <Link href="/contact" className="text-signal underline">
+              Contact page
+            </Link>
+            .
+          </p>
+        </section>
+      </div>
+    </main>
   );
 }
