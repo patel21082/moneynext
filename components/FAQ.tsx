@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import FaqAccordion from "@/components/FaqAccordion";
 
 const FAQS = [
   {
@@ -65,8 +62,6 @@ const FAQ_SCHEMA = {
 };
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
   return (
     <section id="faq" className="py-20 sm:py-28">
       <script
@@ -77,27 +72,8 @@ export default function FAQ() {
         <h2 className="font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
           Frequently asked questions
         </h2>
-
-        <div className="mt-9 divide-y divide-ink-900/8 border-y border-ink-900/8">
-          {FAQS.map((item, i) => {
-            const open = openIndex === i;
-            return (
-              <div key={item.q}>
-                <button
-                  onClick={() => setOpenIndex(open ? null : i)}
-                  aria-expanded={open}
-                  className="flex w-full items-center justify-between gap-4 py-5 text-left"
-                >
-                  <span className="font-medium text-ink-900">{item.q}</span>
-                  <ChevronDown
-                    size={18}
-                    className={`shrink-0 text-ink-600 transition-transform ${open ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {open && <p className="pb-5 text-sm leading-relaxed text-ink-700">{item.a}</p>}
-              </div>
-            );
-          })}
+        <div className="mt-9">
+          <FaqAccordion items={FAQS} />
         </div>
       </div>
     </section>

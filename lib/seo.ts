@@ -11,7 +11,7 @@ export const SITE_DESCRIPTION =
  * at request time — an always-"just updated" sitemap is a well-known
  * anti-pattern that teaches crawlers to distrust your freshness signal.
  */
-export const CONTENT_LAST_UPDATED = "2026-08-17";
+export const CONTENT_LAST_UPDATED = "2026-09-03";
 
 /**
  * Resolves to, in order: an explicit NEXT_PUBLIC_SITE_URL you set, Vercel's

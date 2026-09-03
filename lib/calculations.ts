@@ -137,6 +137,104 @@ export function calculateHealthScore(
   };
 }
 
+export interface EMIInput {
+  principal: number;
+  annualRate: number; // percent, e.g. 8.5
+  tenureYears: number;
+  extraMonthlyPayment?: number;
+}
+
+export interface EMIYearRow {
+  year: number;
+  principalPaid: number;
+  interestPaid: number;
+  balance: number;
+}
+
+export interface EMIResult {
+  emi: number;
+  totalPayment: number;
+  totalInterest: number;
+  schedule: EMIYearRow[];
+  // Populated only when extraMonthlyPayment > 0.
+  withExtra?: {
+    monthsToPayoff: number;
+    totalInterest: number;
+    interestSaved: number;
+    monthsSaved: number;
+  };
+}
+
+/**
+ * Standard reducing-balance EMI calculation:
+ * EMI = P * r * (1+r)^n / ((1+r)^n - 1), where r is the monthly rate.
+ */
+export function calculateEMI(input: EMIInput): EMIResult {
+  const principal = safe(input.principal);
+  const months = Math.max(1, Math.round(safe(input.tenureYears) * 12));
+  const monthlyRate = safe(input.annualRate) / 12 / 100;
+
+  const emi =
+    monthlyRate > 0
+      ? (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+        (Math.pow(1 + monthlyRate, months) - 1)
+      : principal / months;
+
+  const schedule: EMIYearRow[] = [];
+  let balance = principal;
+  let yearPrincipal = 0;
+  let yearInterest = 0;
+  let year = 1;
+
+  for (let m = 1; m <= months; m++) {
+    const interestPortion = balance * monthlyRate;
+    const principalPortion = Math.min(emi - interestPortion, balance);
+    balance = Math.max(0, balance - principalPortion);
+    yearPrincipal += principalPortion;
+    yearInterest += interestPortion;
+
+    if (m % 12 === 0 || m === months) {
+      schedule.push({
+        year,
+        principalPaid: yearPrincipal,
+        interestPaid: yearInterest,
+        balance,
+      });
+      year++;
+      yearPrincipal = 0;
+      yearInterest = 0;
+    }
+  }
+
+  const totalPayment = emi * months;
+  const totalInterest = totalPayment - principal;
+
+  const result: EMIResult = { emi, totalPayment, totalInterest, schedule };
+
+  const extra = safe(input.extraMonthlyPayment);
+  if (extra > 0) {
+    let extraBalance = principal;
+    let extraInterestTotal = 0;
+    let m = 0;
+    while (extraBalance > 0 && m < 12 * 100) {
+      m++;
+      const interestPortion = extraBalance * monthlyRate;
+      const payment = emi + extra;
+      const principalPortion = Math.min(payment - interestPortion, extraBalance);
+      extraBalance = Math.max(0, extraBalance - principalPortion);
+      extraInterestTotal += interestPortion;
+    }
+    result.withExtra = {
+      monthsToPayoff: m,
+      totalInterest: extraInterestTotal,
+      interestSaved: totalInterest - extraInterestTotal,
+      monthsSaved: months - m,
+    };
+  }
+
+  return result;
+}
+
 export function formatINR(amount: number): string {
   const rounded = Math.round(amount);
   return new Intl.NumberFormat("en-IN", {

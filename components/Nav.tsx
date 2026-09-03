@@ -1,16 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 interface NavProps {
   onStart: () => void;
 }
 
-const LINKS = [
+const ANCHOR_LINKS = [
   { href: "#how-it-works", label: "How it works" },
   { href: "#analysis", label: "Financial analysis" },
   { href: "#faq", label: "FAQ" },
+];
+
+const PAGE_LINKS = [
+  { href: "/tools", label: "Tools" },
+  { href: "/learn", label: "Learn" },
 ];
 
 export default function Nav({ onStart }: NavProps) {
@@ -24,7 +30,16 @@ export default function Nav({ onStart }: NavProps) {
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {LINKS.map((link) => (
+          {PAGE_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-ink-700 transition hover:text-ink-900"
+            >
+              {link.label}
+            </Link>
+          ))}
+          {ANCHOR_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -57,7 +72,17 @@ export default function Nav({ onStart }: NavProps) {
       {open && (
         <div className="border-t border-ink-900/5 bg-paper-50 px-5 py-4 md:hidden">
           <div className="flex flex-col gap-4">
-            {LINKS.map((link) => (
+            {PAGE_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="text-sm text-ink-700"
+              >
+                {link.label}
+              </Link>
+            ))}
+            {ANCHOR_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
